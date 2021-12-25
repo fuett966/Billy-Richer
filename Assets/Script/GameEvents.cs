@@ -12,9 +12,15 @@ public class GameEvents : MonoBehaviour
     }
 
     public event Action onTargetIsCollected;
+    public event Action onAllTargetIsCollected;
     public void TargetIsCollected(){
         if (onTargetIsCollected != null){
             onTargetIsCollected();
+        }
+    }
+    public void AllTargetIsCollected(){
+        if (onAllTargetIsCollected != null){
+            onAllTargetIsCollected();
         }
     }
 }

@@ -4,20 +4,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public int ArtOnLevelCount= 0;
+    public string nextLevelName;
     public Text TextGameObject;
-    public int ArtCount = 0;
+    [HideInInspector]public int ArtCount = 0;
     public void Start()
     {
         GameEvents.current.onTargetIsCollected += OnTargetWasCollected;
+        GameEvents.current.onAllTargetIsCollected += OnAllTargetsCollected;
+        TextGameObject.text = "Найдите все артефакты: " + ArtCount+ " из " + ArtOnLevelCount;
     }
     public void OnTargetWasCollected(){
         ArtCount += 1;
-        TextGameObject.text = "Найдите все артефакты: " + Convert.ToInt32(ArtCount)+ " из 5 ";
+        TextGameObject.text = "Найдите все артефакты: " + ArtCount+ " из " + ArtOnLevelCount;
     }
     public void OnAllTargetsCollected(){
+        SceneManager.LoadScene(nextLevelName);
         ArtCount = 0;
     }
 }
