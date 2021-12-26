@@ -20,21 +20,18 @@ public class GoToNextLevelScript : MonoBehaviour
     {
         if(isTriggered && Input.GetKeyDown(KeyCode.E) && gameController.ArtCount == gameController.ArtOnLevelCount){
             GameEvents.current.AllTargetIsCollected();
-        }
-        
+        } 
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        isTriggered = true;
-        // GameEvents.current.TargetIsCollected();
+        isTriggered = true; 
         tmp.a = 255;
         TextGameObject.GetComponent<Text>().color +=  tmp;
         
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        tmp.a = 255;
-        // GameEvents.current.TargetIsCollected();
+        tmp.a = 255; 
         TextGameObject.GetComponent<Text>().color -=  tmp;
         isTriggered = false;
     }
